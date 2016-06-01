@@ -1,0 +1,14 @@
+<div class="mdl-layout mdl-js-layout">
+	<header class="mdl-layout__header">
+		<div class="mdl-layout-icon">
+		</div>
+		<div class="mdl-layout__header-row">
+			<span class="mdl-layout__title">
+				Esempio di layout
+			</span>
+		</div>
+	</header>
+	<div id="main-content">
+		{{> yield}}
+	</div>
+</div>

@@ -1,0 +1,99 @@
+<template name='calendario'>
+	<h1>Elenco degli eventi</h1>
+	<div class='calendar'>
+		<h2>{{mese}}</h2>
+		<ul id='mese'>
+			{{#each giorni}}
+				<li><a href="{{pathFor route='agenda.show'}}">{{giorno}}{{> conteggio}}</a></li>
+			{{/each}}
+		</ul>
+	</div>
+</template>
+
+<template name="conteggio">
+	{{#if conta giorno mese anno}}
+		&nbsp;({{conta giorno mese anno}})
+	{{/if}}
+</template>
+
+<template name='giorno'>
+	<h2>Impegni di {{data_estesa}}</h2>
+   <ul class='eventi'>
+		{{#each eventi}}
+			<li>{{Titolo}}, {{Luogo}}, {{Descrizione}}</li>
+		{{/each}}
+   </ul>
+</template>
+
+<template name='inserisci_evento'>
+	{{> quickForm collection="Eventi" id="ins_evento" type="insert"}}
+</template>
+
+<template name="elenco_membri">
+	<h3> I nostri soci </h3>
+	<div class ='soci'>
+	<ul id='utenti'>
+		{{#each utenti}} 
+			<li><a href ="{{pathFor route ='profilo.show'}}">{{cognome}} {{nome}}</a></li>
+		{{/each}}
+	</ul>
+	</div>
+</template>
+
+<template name="profilo">
+{{#with utente}}
+	<h2>Profilo di {{nome}} {{cognome}}</h2>
+	<ul class='profilo'>
+		<li>{{data_nascita}}</li>
+		<li>{{indirizzo}}</li>
+		<li>{{ruolo}}</li>
+		<li>{{curriculum}}</li>
+		<li>{{telefono}}</li>
+	</ul>
+{{/with}}
+</template>
+
+<template name="inserisci_utente">
+	<h2>Inserisci un nuovo utente</h2>
+	{{> quickForm collection="Utenti" id="ins_utente" type="insert"}}
+</template>
+
+<template name="home">
+		<div class="col s6 m6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">Prossimi appuntamenti</span>
+              <ul class="next-events">
+              	{{> ProssimiEventi }}
+              </ul>
+            </div>
+            <div class="card-action">
+              <a href="{{pathFor route ='calendario.show'}}">Visualizza tutti</a>
+            </div>
+          </div>
+        </div>
+        {{#if Megaboss}}
+			  <div class="col s6 m6">
+				 <div class="card blue-grey darken-1">
+					<div class="card-content white-text">
+					  <span class="card-title">Funzioni di amministrazione</span>
+					  <p>Buongiorno Megaboss! Gestisci gli eventi e i membri del club</p>
+					</div>
+					<div class="card-action">
+					  <a href="{{pathFor route ='inserisci_e.show'}}">Inserisci Evento</a>
+					  <a href="{{pathFor route ='inserisci_u.show'}}">Inserisci Utente</a>
+					</div>
+				 </div>
+			  </div>
+        {{/if}}
+</template>
+
+<template name="mylogin">
+	{{> atForm}}
+</template>
+
+<template name="ProssimiEventi">
+	{{#each next_event}}
+		<li>{{Data}}, {{Titolo}}, {{Luogo}}, {{Descrizione}}</li>
+	{{/each}}
+</template>

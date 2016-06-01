@@ -1,0 +1,55 @@
+<template name='calendario'>
+	<h1>Elenco degli eventi</h1>
+	<div class='calendar'>
+		<h2>{{mese}}</h2>
+		<ul id='mese'>
+			{{#each giorni}}
+				<li><a href="{{pathFor route='agenda.show'}}">{{giorno}}{{> conteggio}}</a></li>
+			{{/each}}
+		</ul>
+	</div>
+</template>
+
+<template name="conteggio">
+	{{#if conta giorno mese anno}}
+		&nbsp;({{conta giorno mese anno}})
+	{{/if}}
+</template>
+
+<template name='giorno'>
+	<h2>Impegni di {{data_estesa}}</h2>
+   <ul class='eventi'>
+		{{#each eventi}}
+			<li>{{Titolo}}, {{Luogo}}, {{Descrizione}}</li>
+		{{/each}}
+   </ul>
+</template>
+
+<template name='inserisci_evento'>
+	<h2>Inserisci un nuovo evento</h2>
+	<form id="insert_ev">
+		<span class="form_int">Data</span><input type="text" name="Data" id="Data"><br />
+		<span class="form_int">Titolo</span><input type="text" size="40" name="Titolo" /><br />
+		<span class="form_int">Luogo</span><input type="text" size="40" name="Luogo" /><br />
+		<span class="form_int">Descrizione</span><input type="text" size="40" name="Descrizione" /><br />
+		<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="sumbit" value="Inserisci">Inserisci</button>
+		<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="reset" value="Cancella">Cancella</button>
+	</form>
+</template>
+
+<template name='inserisci_utente'>
+	<h2>Inserisci un nuovo utente</h2>
+	<form id="insert_ev" onSubmit="return test_user_insert()">
+		<span class="form_int">Nome</span><input type ="text" name="nome" size="60" /><br />
+		<span class="form_int">Cognome</span><input type="text" name="cognome" size="60" /><br />
+		<span class="form_int">Indirizzo</span><input type="text" name="indirizzo" size="60" /><br />
+		<span class="form_int">Numero di Telefono</span><input type="tel" name="telefono" /><br />
+		<span class="form_int">Data di Nascita</span><input type="date" name="nascita" /><br />
+		<span class="form_int">E-mail</span><input type="email" name="mail" /><br size="30" />
+		<span class="form_int">Username</span><input type="text" name="user" /><br />
+		<span class="form_int">Password</span><input type="password" name="password" /><br />
+		<span class="form_int">Conferma la Password</span><input type="password" name="conferma" /><br />
+		<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="sumbit" value="Inserisci">Inserisci</button>
+		<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="reset" value="Cancella">Cancella</button>
+	</form>
+</template>

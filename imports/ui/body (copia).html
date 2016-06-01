@@ -1,0 +1,36 @@
+<template name='calendario'>
+	<h1>Elenco degli eventi</h1>
+	<div class='calendar'>
+		<h2>{{mese}}</h2>
+		<ul id='mese'>
+			{{#each giorni}}
+				<li>{{giorno}}<br/>
+				{{> giorno}}
+				</li>
+			{{/each}}
+		</ul>
+	</div>
+</template>
+
+<template name='giorno'>
+    <ul class='eventi'>
+	{{#each eventi giorno mese anno}}
+		{{> evento}}
+	{{/each}}
+    </ul>
+</template>
+
+<template name='evento'>
+	<li>{{Titolo}}, {{Luogo}}, {{Descrizione}}</li>
+</template>
+
+<template name='inserisci_evento'>
+	<h2>Inserisci un nuovo evento</h2>
+	<form id="insert_ev">
+		<span class="form_int">Data</span><input type="text" name="Data" id="Data"><br />
+		<span class="form_int">Titolo</span><input type="text" size="40" name="Titolo" /><br />
+		<span class="form_int">Luogo</span><input type="text" size="40" name="Luogo" /><br />
+		<span class="form_int">Descrizione</span><input type="text" size="40" name="Descrizione" /><br />
+		<input type="submit" value="Inserisci" /><input type="reset" value="Cancella" />
+	</form>
+</template>

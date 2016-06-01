@@ -1,0 +1,19 @@
+<template name="application_layout">
+		<div class="navbar-fixed">
+		<nav>
+			 <div class="nav-wrapper">
+				<a href="{{pathFor route ='home.show'}}" class="brand-logo left"><span class="material-icons">settings</span> My Rotary Club</a>
+				<ul id="nav-mobile" class="right">
+				  <li><a href="{{pathFor route ='calendario.show'}}">Calendario</a></li>
+				  <li><a href="{{pathFor route ='membri.show'}}">Membri</a></li>
+				  <li><a href="#">Il mio profilo</a></li>
+				</ul>
+			 </div>
+		 </nav>
+		</div>
+		<div class="container">
+			<div id="main-content">
+				{{> yield}}
+			</div>
+		</div>
+</template>
